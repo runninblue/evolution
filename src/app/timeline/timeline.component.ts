@@ -10,9 +10,11 @@ import { Options } from 'ngx-slider-v2';
   styleUrl: './timeline.component.scss'
 })
 export class TimelineComponent {
-  value: number = 100;
+  value: number = -2000;
+  highValue: number = 1000;
   options: Options = {
-    floor: 0,
-    ceil: 200
+    floor: -11000,
+    ceil: 2000,
+    step: 1000
   }
 }
