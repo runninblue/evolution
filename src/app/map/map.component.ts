@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import * as L from 'leaflet';
+import 'leaflet/dist/leaflet.css';
 
 @Component({
   selector: 'app-map',
@@ -7,6 +9,39 @@ import { Component } from '@angular/core';
   templateUrl: './map.component.html',
   styleUrl: './map.component.scss'
 })
-export class MapComponent {
+export class MapComponent implements OnInit, AfterViewInit {
+  private map!: L.Map;
+
+  markers: L.Marker[] = [
+    L.marker([31.9539, 35.9106]), // Amman
+    L.marker([32.5568, 35.8469]) // Irbid
+  ];
+
+  constructor() {}
+
+  ngOnInit(): void {
+    this.initMap();
+    this.addMarkers();
+    this.centerMap();
+  }
+
+  ngAfterViewInit(): void {
+
+  }
+
+  private initMap() {
+    const baseMapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+    this.map = L.map('map');
+    L.tileLayer(baseMapUrl, {attribution: '© OpenStreetMap contributors',}).addTo(this.map);
+  }
+
+  private addMarkers() {
+    this.markers.forEach(marker => marker.addTo(this.map));
+  }
+
+  private centerMap() {
+    const bounds = L.latLngBounds(this.markers.map(marker => marker.getLatLng()));
+    this.map.fitBounds(bounds);
+  }
 
 }
