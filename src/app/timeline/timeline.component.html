@@ -1,3 +1,7 @@
-<div class="custom-slider">
-  <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="options"></ngx-slider>
+<div class="custom-slider" *ngIf="dataLoaded">
+  <ngx-slider [(value)]="value" [(highValue)]="highValue" [options]="updateOptions()"></ngx-slider>
+</div>
+
+<div class="custom-slider" *ngIf="!dataLoaded">
+  Loading...
 </div>

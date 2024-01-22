@@ -31,8 +31,15 @@ export class MapComponent implements OnInit, AfterViewInit {
 
   private initMap() {
     const baseMapUrl = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
-    this.map = L.map('map');
-    L.tileLayer(baseMapUrl, {attribution: '© OpenStreetMap contributors',}).addTo(this.map);
+    this.map = L.map('map', {
+      zoomControl: false
+    });
+
+    L.control.zoom({
+      position: 'bottomright'
+    }).addTo(this.map);
+
+    L.tileLayer(baseMapUrl).addTo(this.map);
   }
 
   private addMarkers() {
