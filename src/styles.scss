@@ -37,3 +37,16 @@ $evolution-theme: mat.define-light-theme((
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+.labelstyle .leaflet-popup-tip,
+.labelstyle .leaflet-popup-content-wrapper {
+    background-color: rgba(50, 50, 50, 0.8);
+}
+
+.labelstyle .leaflet-popup-content-wrapper > div {
+    color: white;
+}
+
+.leaflet-interactive {
+  cursor: context-menu;
+}
+
